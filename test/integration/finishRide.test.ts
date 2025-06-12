@@ -10,6 +10,7 @@ import StartRide from "../../src/application/usecase/StartRide";
 import UpdatePosition from "../../src/application/usecase/UpdatePosition";
 import { PositionRepositoryDatabase } from "../../src/infra/repository/PositionRepository";
 import FinishRide from "../../src/application/usecase/FinishRide";
+import Mediator from "../../src/infra/mediator/Mediator";
 
 let databaseConnection: DatabaseConnection;
 let signup: Signup;
@@ -29,6 +30,8 @@ beforeEach(() => {
     Registry.getInstance().provide("rideRepository", rideRepository);
     const positionRepository = new PositionRepositoryDatabase();
     Registry.getInstance().provide("positionRepository", positionRepository);
+    const mediator = new Mediator();
+    Registry.getInstance().provide("mediator", mediator)
     signup = new Signup();
     requestRide = new RequestRide();
     acceptRide = new AcceptRide();
